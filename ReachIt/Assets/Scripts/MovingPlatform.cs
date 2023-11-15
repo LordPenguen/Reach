@@ -10,9 +10,10 @@ public class MovingPlatform : MonoBehaviour
     public Transform platform;
     public Transform startPoint;
     public Transform endPoint;
-    //public float speed = 1.5f;
-    public float speed = Random.Range(1, 5);
+    public float speed = 1.5f;
+    //public float speed = Random.Range(1, 5);
     private float elapsedTime;
+    
     
     //public float randomladım = Random.Range(1, 5);
     
@@ -21,20 +22,25 @@ public class MovingPlatform : MonoBehaviour
     private void Update()
     {
 
-        Vector2 target = currentMovementTarget();
+        Vector2 target = currentMovementTarget(); 
         
         elapsedTime += Time.deltaTime;
         float percentageComplete = elapsedTime / speed;
 
-        //platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
-        platform.position = Vector2.Lerp(endPoint.position, startPoint.position , percentageComplete);
+        platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
+        //platform.position = Vector2.Lerp(startPoint.position, endPoint.position , percentageComplete);
 
+        float distance = (target - (Vector2)platform.position).magnitude; 
+
+        if (distance <= 0.1f)
+        {
+            direction *= -1;
+        }
+        
     }
 
     Vector2 currentMovementTarget()
     {
-        
-        
         if (direction == 1)
         {
             return startPoint.position;
