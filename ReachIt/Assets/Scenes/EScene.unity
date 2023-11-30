@@ -357,12 +357,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8324327815847899539, guid: 471a270a92e0dcc4b8cfdb6c217ccc6a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324327815847899539, guid: 471a270a92e0dcc4b8cfdb6c217ccc6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8324327815847899539, guid: 471a270a92e0dcc4b8cfdb6c217ccc6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 8324327815847899539, guid: 471a270a92e0dcc4b8cfdb6c217ccc6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -435,10 +439,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 9220812508257099354, guid: 471a270a92e0dcc4b8cfdb6c217ccc6a, type: 3}
-  height: 0
-  width: 0
-  speed: 0
-  nextBuildingPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1801219123
 Transform:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ Transform:
   m_GameObject: {fileID: 1801219121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 0, z: 0}
+  m_LocalPosition: {x: -7, y: -1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
