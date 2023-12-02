@@ -27,8 +27,8 @@ public class MovingPlatform : MonoBehaviour
         elapsedTime += Time.deltaTime;
         float percentageComplete = elapsedTime / speed;
 
-        platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
-        //platform.position = Vector2.Lerp(startPoint.position, endPoint.position , percentageComplete);
+        //platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
+        platform.position = Vector2.Lerp(startPoint.position, endPoint.position , percentageComplete);
 
         float distance = (target - (Vector2)platform.position).magnitude; 
 
