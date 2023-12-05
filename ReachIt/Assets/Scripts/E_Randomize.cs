@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class E_Randomize : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class E_Randomize : MonoBehaviour
     [System.NonSerialized] public float speed;
     [System.NonSerialized] public Vector3 nextBuildingPosition;
     private float _nextBuildingX;
-    private float _nextBuildingY = -4.8f;
+    private float _nextBuildingY = -5f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
+    [System.NonSerialized] private Vector3 _reachpoint;
 
     void RandomThings()
     {
@@ -22,16 +24,12 @@ public class E_Randomize : MonoBehaviour
         width = Random.Range(5,10);
         
         //Random building speed
-        speed = Random.Range(1,3);
+        speed = Random.Range(5,11);
 
-        //Debug.Log("Speed ="+ speed);
+        //Space between two buildings
+        _nextBuildingX = Random.Range(3,6);
 
-        //Random spawner point
-        // 3-6 sayıları arasında rastgele birini seçip bir sonraki çıkıcak olan binanın X değerine ekle
-        //Bir sonraki binayı çıkar
-        _nextBuildingX = Random.Range(1,6);
-
-        Debug.Log("Height ="+ height + " Width ="+ width + " NextBuilding ="+ _nextBuildingX);
+        Debug.Log("Height =" + height + " Width =" + width + " NextBuilding =" + _nextBuildingX);
         
     }
 
@@ -44,13 +42,17 @@ public class E_Randomize : MonoBehaviour
         Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
 
         //Changing the building's width [Vector3.right => (1,0,0)] height  [Vector3.up => (0,1,0)]
-        buildingPrefab.transform.localScale = Vector3.right * (width) + Vector3.up * (5f + height);
+        buildingPrefab.transform.localScale = Vector3.right * width + Vector3.up * (5f + height);
 
         _oldbuildingstartPosX = nextBuildingPosition.x;
 
-        Debug.Log("Oldbuild = " + _oldbuildingstartPosX);
-        
+        _reachpoint = new Vector3 (_oldbuildingstartPosX, height,0);
+
+        //Makin it move up
+        buildingPrefab.transform.DOMove(_reachpoint,speed,true);
+
     }
+
 
     void Update() 
     {
@@ -59,6 +61,7 @@ public class E_Randomize : MonoBehaviour
             SpawnBuilding();
         }
     }
+
 
 
 }
