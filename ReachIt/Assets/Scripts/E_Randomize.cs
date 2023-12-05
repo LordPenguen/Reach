@@ -11,9 +11,8 @@ public class E_Randomize : MonoBehaviour
     [System.NonSerialized] public float speed;
     [System.NonSerialized] public Vector3 nextBuildingPosition;
     private float _nextBuildingX;
-    private float _nextBuildingY = -5f;
+    private float _nextBuildingY = -10f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
-    [System.NonSerialized] private Vector3 _reachpoint;
 
     void RandomThings()
     {
@@ -41,15 +40,16 @@ public class E_Randomize : MonoBehaviour
 
         Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
 
+        buildingPrefab.transform.DOMoveY(height + 5f , 1f);
+
         //Changing the building's width [Vector3.right => (1,0,0)] height  [Vector3.up => (0,1,0)]
         buildingPrefab.transform.localScale = Vector3.right * width + Vector3.up * (5f + height);
 
+        
+
         _oldbuildingstartPosX = nextBuildingPosition.x;
 
-        _reachpoint = new Vector3 (_oldbuildingstartPosX, height,0);
-
-        //Makin it move up
-        buildingPrefab.transform.DOMove(_reachpoint,speed,true);
+        
 
     }
 
@@ -61,8 +61,5 @@ public class E_Randomize : MonoBehaviour
             SpawnBuilding();
         }
     }
-
-
-
 }
     
