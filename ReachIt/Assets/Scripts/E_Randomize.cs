@@ -38,18 +38,14 @@ public class E_Randomize : MonoBehaviour
         
         nextBuildingPosition = new Vector3( _oldbuildingstartPosX + width + _nextBuildingX , _nextBuildingY, 0);
 
-        Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
+        var buildingInstance = Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
 
-        buildingPrefab.transform.DOMoveY(height + 5f , 1f);
+        buildingInstance.transform.DOMoveY(height + 5f , 3f);
 
         //Changing the building's width [Vector3.right => (1,0,0)] height  [Vector3.up => (0,1,0)]
-        buildingPrefab.transform.localScale = Vector3.right * width + Vector3.up * (5f + height);
-
-        
+        buildingInstance.transform.localScale = Vector3.right * width + Vector3.up * (5f + height);
 
         _oldbuildingstartPosX = nextBuildingPosition.x;
-
-        
 
     }
 
