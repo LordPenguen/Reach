@@ -7,26 +7,30 @@ public class E_Randomize : MonoBehaviour
 {
     public GameObject buildingPrefab;
     [System.NonSerialized] public float height;
+    [System.NonSerialized] public float endPointy;
     [System.NonSerialized] public float width;
     [System.NonSerialized] public float speed;
     [System.NonSerialized] public Vector3 nextBuildingPosition;
     private float _nextBuildingX;
-    private float _nextBuildingY = -10f;
+    private float _nextBuildingY = -14f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
 
     void RandomThings()
     {
         //Random building height
-        height = Random.Range(1,9);
+        height = Random.Range(5,11);
+
+        //Random Ending point.Y
+        endPointy = Random.Range(-6,0);
 
         //Random building width
         width = Random.Range(5,10);
         
         //Random building speed
-        speed = Random.Range(5,11);
+        speed = Random.Range(3,6);
 
         //Space between two buildings
-        _nextBuildingX = Random.Range(3,6);
+        _nextBuildingX = Random.Range(3,7);
 
         Debug.Log("Height =" + height + " Width =" + width + " NextBuilding =" + _nextBuildingX);
         
@@ -40,10 +44,10 @@ public class E_Randomize : MonoBehaviour
 
         var buildingInstance = Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
 
-        buildingInstance.transform.DOMoveY(height + 5f , 3f);
+        buildingInstance.transform.DOMoveY(endPointy, speed);
 
         //Changing the building's width [Vector3.right => (1,0,0)] height  [Vector3.up => (0,1,0)]
-        buildingInstance.transform.localScale = Vector3.right * width + Vector3.up * (5f + height);
+        buildingInstance.transform.localScale = Vector3.right * width + Vector3.up * (height);
 
         _oldbuildingstartPosX = nextBuildingPosition.x;
 
