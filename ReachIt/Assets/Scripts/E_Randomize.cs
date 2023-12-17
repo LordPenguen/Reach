@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Security.Cryptography;
+using UnityEngine.UIElements;
 
 public class E_Randomize : MonoBehaviour
 {
+    public static E_Randomize instance;
     public GameObject buildingPrefab;
     public Camera mainCamera;
     [System.NonSerialized] public float height;
@@ -15,6 +18,11 @@ public class E_Randomize : MonoBehaviour
     private float _nextBuildingX;
     private float _nextBuildingY = -10f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
+
+    public GameObject Player;
+
+    private int _length;
+
 
     void RandomThings()
     {
@@ -38,7 +46,7 @@ public class E_Randomize : MonoBehaviour
     }
 
     //After testing it change it back to IEnumerator and tryout spawn times
-    void SpawnBuilding()
+    public void SpawnBuilding()
     {
         RandomThings();
         
@@ -60,17 +68,17 @@ public class E_Randomize : MonoBehaviour
     }
 
     //if out of camera view destroy
-    // if points are "this much" double, triple, quadraple...
-    //instantiate problem.... if jumped on one buildig instantiate next two... if its "this much" point instantiate three...
 
-    void Update() 
+    // if points are "this much" double, triple, quadraple...
+
+    //instantiate problem.... if jumped on one buildig instantiate next two... if its "this much" point instantiate three...
+    public void GameOn()
     {
 
-        if(Input.GetKeyDown("space"))
-        {
-            SpawnBuilding();
-        }
-       //StartCoroutine(SpawnBuilding());
+        SpawnBuilding();
+        
     }
+   
+
 }
     
