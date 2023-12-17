@@ -61,7 +61,7 @@ public class E_Randomize : MonoBehaviour
 
     //if out of camera view destroy
     // if points are "this much" double, triple, quadraple...
-
+    //instantiate problem.... if jumped on one buildig instantiate next two... if its "this much" point instantiate three...
 
     void Update() 
     {
