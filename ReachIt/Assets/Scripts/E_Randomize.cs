@@ -13,7 +13,7 @@ public class E_Randomize : MonoBehaviour
     [System.NonSerialized] public float speed;
     [System.NonSerialized] public Vector3 nextBuildingPosition;
     private float _nextBuildingX;
-    private float _nextBuildingY = -5f;
+    private float _nextBuildingY = -10f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
 
     void RandomThings()
@@ -44,22 +44,14 @@ public class E_Randomize : MonoBehaviour
         
         nextBuildingPosition = new Vector3( _oldbuildingstartPosX + width + _nextBuildingX , _nextBuildingY, 0);
 
-        // Convert the random position to world coordinates
-        Vector3 worldPosition = mainCamera.ViewportToWorldPoint(nextBuildingPosition);
+       
+        var buildingInstance = Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
 
-        //Debug.Log("worldposition" + worldPosition);
+        buildingInstance.transform.DOMoveY(endPointy, speed);
 
-        //if(IsInCameraView(worldPosition))
-       // {
-            var buildingInstance = Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
-
-            SetPivotToTop(buildingInstance.transform);
-
-            buildingInstance.transform.DOMoveY(endPointy, speed);
-
-            //Changing the building's width [Vector3.right => (1,0,0)] height  [Vector3.up => (0,1,0)]
-            buildingInstance.transform.localScale = Vector3.right * width + Vector3.up * (6f);
-       // }
+        //Changing the building's width [Vector3.right => (1,0,0)] height  [Vector3.up => (0,1,0)]
+        buildingInstance.transform.localScale = Vector3.right * width + Vector3.up * (6f);
+       
 
         _oldbuildingstartPosX = nextBuildingPosition.x;
 
@@ -67,19 +59,8 @@ public class E_Randomize : MonoBehaviour
 
     }
 
-    bool IsInCameraView(Vector3 bPosition)
-    {
-        Vector3 viewportPosition = mainCamera.WorldToViewportPoint(bPosition);
-
-        return viewportPosition.x >= -1 && viewportPosition.x <= 1 && viewportPosition.y >= -1 && viewportPosition.y <= 1;
-    }
-
-    void SetPivotToTop(Transform transform)
-    {
-        Vector3 topPosition = new Vector3(transform.position.x, transform.position.y + transform.localScale.y / 2, transform.position.z);
-
-        transform.position = topPosition;
-     }
+    //if out of camera view destroy
+    // if points are "this much" double, triple, quadraple...
 
 
     void Update() 
