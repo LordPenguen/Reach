@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class E_PointDetect : MonoBehaviour
 {   
-    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player"))
@@ -13,6 +12,7 @@ public class E_PointDetect : MonoBehaviour
             Debug.Log("destroyed bobobox");
             //increase point or some other things
             E_PointCounter.instance.IncreasePoint();
+            E_Randomize.instance.GameOn();
         }
     }
 }

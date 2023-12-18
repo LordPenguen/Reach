@@ -9,7 +9,6 @@ public class E_Randomize : MonoBehaviour
 {
     public static E_Randomize instance;
     public GameObject buildingPrefab;
-    public Camera mainCamera;
     [System.NonSerialized] public float height;
     [System.NonSerialized] public float endPointy;
     [System.NonSerialized] public float width;
@@ -19,10 +18,10 @@ public class E_Randomize : MonoBehaviour
     private float _nextBuildingY = -10f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
 
-    public GameObject Player;
-
-    private int _length;
-
+     private void Awake() 
+    {
+        instance = this;
+    }
 
     void RandomThings()
     {
@@ -46,7 +45,7 @@ public class E_Randomize : MonoBehaviour
     }
 
     //After testing it change it back to IEnumerator and tryout spawn times
-    public void SpawnBuilding()
+    public IEnumerator SpawnBuilding()
     {
         RandomThings();
         
@@ -63,7 +62,7 @@ public class E_Randomize : MonoBehaviour
 
         _oldbuildingstartPosX = nextBuildingPosition.x;
 
-       // yield return new WaitForSeconds(.1f);
+       yield return new WaitForSeconds(.1f);
 
     }
 
@@ -74,8 +73,15 @@ public class E_Randomize : MonoBehaviour
     //instantiate problem.... if jumped on one buildig instantiate next two... if its "this much" point instantiate three...
     public void GameOn()
     {
-
-        SpawnBuilding();
+        if(E_PointCounter.instance.currentPoint <= 10)
+        {
+            StartCoroutine(SpawnBuilding());
+        }
+        else
+        {
+            StartCoroutine(SpawnBuilding());
+            StartCoroutine(SpawnBuilding());
+        }
         
     }
    
