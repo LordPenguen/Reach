@@ -8,7 +8,8 @@ public class E_PointDetect : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Destroy(GetComponent<BoxCollider2D>());
+            //needs to be deactived and activated again
+
             Debug.Log("destroyed bobobox");
             //increase point or some other things
             E_PointCounter.instance.IncreasePoint();
