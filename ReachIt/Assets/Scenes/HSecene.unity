@@ -274,6 +274,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 344373436}
+  playerMovement: {fileID: 344373438}
+  initialSpeed: 2
+  accelerationRate: 0.01
+  maxSpeed: 20
 --- !u!1 &344373434
 GameObject:
   m_ObjectHideFlags: 0

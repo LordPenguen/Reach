@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    
-    
+
+    // Added property to get horizontal movement
+    public float HorizontalMovement => horizontal;
 
     // Update is called once per frame
     void Update()
@@ -74,15 +74,12 @@ public class PlayerMovement : MonoBehaviour
     
     private void Flip()
     {
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
-            if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-            {
-                isFacingRight = !isFacingRight;
-                Vector3 localScale = transform.localScale;
-                localScale.x *= -1f;
-                transform.localScale = localScale;
-            }
-
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
     }
 }
