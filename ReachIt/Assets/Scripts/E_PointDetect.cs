@@ -8,11 +8,7 @@ public class E_PointDetect : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            //needs to be deactived and activated again
-
-            Debug.Log("destroyed bobobox");
-            //increase point or some other things
-            E_PointCounter.instance.IncreasePoint();
+            //spawn
             E_Randomize.instance.GameOn();
         }
     }

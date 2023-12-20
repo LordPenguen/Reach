@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1259561679155840663}
   - component: {fileID: 8622326591383620017}
   - component: {fileID: 5715009954746412694}
-  - component: {fileID: 8438963066536225830}
   - component: {fileID: 1403781385605942025}
+  - component: {fileID: 8488992881392642975}
   m_Layer: 6
   m_Name: Building
   m_TagString: Untagged
@@ -178,18 +178,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8438963066536225830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9220812508257099354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d073d46748f5954abc0056a86309d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1403781385605942025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,3 +190,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391351edb0da15f4f95f1c2f254c98c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8488992881392642975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220812508257099354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d073d46748f5954abc0056a86309d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointcoin: {fileID: 7147776975177664278, guid: e8fc78d415d75864bae2161fefcef385, type: 3}

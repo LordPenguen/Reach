@@ -7,11 +7,13 @@ public class E_Randomize : MonoBehaviour
 {
     public static E_Randomize instance;
     public GameObject buildingPrefab;
+    public GameObject coinPrefab;
     [System.NonSerialized] public float height;
     [System.NonSerialized] public float endPointy;
     [System.NonSerialized] public float width;
     [System.NonSerialized] public float speed;
     [System.NonSerialized] public Vector3 nextBuildingPosition;
+    [System.NonSerialized] public Vector3 nextCoinPosition;
     private float _nextBuildingX;
     private float _nextBuildingY = -10f;
     [System.NonSerialized] private  float _oldbuildingstartPosX = -9;
@@ -48,16 +50,25 @@ public class E_Randomize : MonoBehaviour
         RandomThings();
         
         nextBuildingPosition = new Vector3( _oldbuildingstartPosX + width + _nextBuildingX , _nextBuildingY, 0);
-       
+
+        //height is broken
+        nextCoinPosition = new Vector3(nextBuildingPosition.x, endPointy + height/2 , 0);
+        
         //var buildingInstance = Instantiate(buildingPrefab, nextBuildingPosition, Quaternion.identity); 
 
         //tryingg to take it from pool
-        GameObject buildingInstance = E_ObjectPool.instance.GetPooledObject();
+        GameObject buildingInstance = E_ObjectPool.instance.GetPooledBuildingObject();
 
-        if(buildingInstance != null)
+        GameObject coinInstance = E_ObjectPool.instance.GetPooledCoinObject();
+
+
+        if(buildingInstance != null )
         {
             buildingInstance.transform.position = nextBuildingPosition;
             buildingInstance.SetActive(true);
+
+            coinInstance.transform.position = nextCoinPosition;
+            coinInstance.SetActive(true);
 
             buildingInstance.transform.DOMoveY(endPointy, speed);
 
@@ -66,7 +77,6 @@ public class E_Randomize : MonoBehaviour
 
             _oldbuildingstartPosX = nextBuildingPosition.x;
         }
-     
         //yield return new WaitForSeconds(.1f);
     }
     
